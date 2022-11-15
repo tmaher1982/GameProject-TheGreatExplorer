@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8f143e3f6b7472d4da122c40d49965f0,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -8330,8 +8331,8 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 13.34, y: 10, z: 12.9}
-  m_BoxOffset: {x: 0, y: -1.0828509, z: 0}
+  m_BoxSize: {x: 20.090492, y: 10, z: 20.298395}
+  m_BoxOffset: {x: -0.020460129, y: -1.0828509, z: 0.022820473}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
@@ -16570,6 +16571,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow switch
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b016e5fe022ac540832542c86f1c082,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 69
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b016e5fe022ac540832542c86f1c082, type: 3}
 --- !u!4 &1148780856 stripped
@@ -22842,18 +22848,18 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 70.41, y: 52.63}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 619.3376
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 27.6
+  near clip plane: 1
+  far clip plane: 298.01
+  field of view: 4.8659477
   orthographic: 0
   orthographic size: 4.4
   m_Depth: -1
@@ -22878,8 +22884,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336370910}
-  m_LocalRotation: {x: 0.26404667, y: 0.35332572, z: -0.10466811, w: 0.8913389}
-  m_LocalPosition: {x: -13.675284, y: 11.367564, z: -14.387216}
+  m_LocalRotation: {x: -0.18721373, y: -0.27829105, z: 0.055398375, w: -0.9404447}
+  m_LocalPosition: {x: -53.2, y: 40.6, z: -82.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -22903,7 +22909,7 @@ MonoBehaviour:
     m_Bits: 1024
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -38550,13 +38556,13 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_Bias: 0
+    m_NormalBias: 0
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -38583,7 +38589,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
