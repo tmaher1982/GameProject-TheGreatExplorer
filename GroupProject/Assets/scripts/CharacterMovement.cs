@@ -8,6 +8,8 @@ public class CharacterMovement : MonoBehaviour
     public MyInputs playerControls;
 
     Vector2 moveDirection = Vector2.zero;
+    public Transform mainCamParent;
+    public Camera mainCam;
 
     public float movementSpeed;
     public float rotationSpeed;
@@ -26,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
     private float gravityValue = -9.81f;
 
     bool alive = true;
+    public bool invincible = false;
 
     private void Awake() 
     {
@@ -48,12 +51,13 @@ public class CharacterMovement : MonoBehaviour
     {
        // rb = GetComponent<Rigidbody>();
        controller = GetComponent<CharacterController>();
+       //mainCam = Camera.main;
     }
 
     void Update()
     {
         // For now just rotate the player when not alive
-        if(!alive)
+        if(!alive && !invincible)
         {
             GetComponent<PickupBall>().DropObject();
             transform.rotation = Quaternion.Euler(90f, 0f,0f);
@@ -65,7 +69,22 @@ public class CharacterMovement : MonoBehaviour
         // var turn = Input.GetAxis(("Horizontal"));
         moveDirection = move.ReadValue<Vector2>();
         // moveDirection.Normalize();
-        moveDirection = Vector2.ClampMagnitude(moveDirection, 1f);
+      //  moveDirection = Vector2.ClampMagnitude(moveDirection, 1f);
+
+        // Vector3 forward = mainCamParent.transform.forward ;
+        // Vector3 right = mainCamParent.transform.right ;
+        Vector3 forward = mainCam.transform.forward ;
+        Vector3 right = mainCam.transform.right ;
+        forward.y = 0f;
+        right.y = 0f;
+        forward = forward.normalized;
+        right = right.normalized;
+        Vector3 forwardRelativeVerticalInput = moveDirection.y * forward;
+        Vector3 rightRelativeHorizontalInput = moveDirection.x * right;
+
+        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
+       
+       // moveDirection = cameraRelativeMovement;
         //moveDirection = move
         groundedPlayer = controller.isGrounded;
         // if (groundedPlayer && playerVelocity.y < 0)
@@ -74,8 +93,12 @@ public class CharacterMovement : MonoBehaviour
         // }
 
        // Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+
        if(groundedPlayer)
-            controller.Move(new Vector3(moveDirection.x, 0f, moveDirection.y) * Time.deltaTime * playerSpeed);
+            // controller.Move(new Vector3(moveDirection.x, 0f, moveDirection.y) * Time.deltaTime * playerSpeed);
+            controller.Move(cameraRelativeMovement * Time.deltaTime * playerSpeed);
+            
 
         if (moveDirection != Vector2.zero)
         {
@@ -84,10 +107,18 @@ public class CharacterMovement : MonoBehaviour
             lookAt.y = 0f;
             lookAt.z = moveDirection.y;
 
+            lookAt.x = cameraRelativeMovement.x;
+            lookAt.z = cameraRelativeMovement.z;
+
+
             Quaternion currentRotation = transform.rotation;
             Quaternion targetRotation = Quaternion.LookRotation(lookAt);
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed *Time.deltaTime);
             //gameObject.transform.forward = new Vector3(moveDirection.x, 0f, moveDirection.y);
+
+            // var relative = (transform.position + skewedDirection) - transform.position;
+            // var rot = Quaternion.LookRotation(relative, Vector3.up);
+            // transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360f *Time.deltaTime);
         }
 
         // Changes the height position of the player..
