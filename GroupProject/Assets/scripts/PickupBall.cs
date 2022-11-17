@@ -55,6 +55,24 @@ public class PickupBall : MonoBehaviour
       //  bool clicked = Mouse.current.leftButton.wasPressedThisFrame;
         // bool clicked = click.ReadValue<>();
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward *pickupRange), Color.cyan);
+        Debug.DrawRay(transform.position+ new Vector3(-0.25f, 0, 0), transform.TransformDirection(Vector3.forward *pickupRange), Color.red);
+        Debug.DrawRay(transform.position+ new Vector3(0.25f, 0, 0), transform.TransformDirection(Vector3.forward *pickupRange), Color.green);
+
+        if (heldObj == null)
+        {
+            RaycastHit hit;
+            float rayOffset = 0.25f;
+            for (int i = -1; i < 2; i++)
+            {
+                if(Physics.Raycast(transform.position + new Vector3(rayOffset * i, 0, 0), transform.TransformDirection(Vector3.forward), out hit, pickupRange, LayerMask.GetMask("Ball")))
+                {
+                    //Highlight
+                    Debug.Log(hit.transform.name);
+                    hit.collider.GetComponent<HighLightBall>().SetLit();
+                    break;
+                }
+            }
+        }
     }
 
     private void FixedUpdate() 
@@ -108,11 +126,16 @@ public class PickupBall : MonoBehaviour
             {
                 RaycastHit hit;
 
-                if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange, LayerMask.GetMask("Ball")))
+                float rayOffset = 0.25f;
+                for (int i = -1; i < 2; i++)
                 {
-                    //pickup
-                     Debug.Log(hit.transform.name);
-                    PickupObject(hit.transform.gameObject);
+                    if(Physics.Raycast(transform.position + new Vector3(rayOffset * i, 0, 0), transform.TransformDirection(Vector3.forward), out hit, pickupRange, LayerMask.GetMask("Ball")))
+                    {
+                        //pickup
+                        Debug.Log(hit.transform.name);
+                        PickupObject(hit.transform.gameObject);
+                        break;
+                    }
                 }
             }
             else
