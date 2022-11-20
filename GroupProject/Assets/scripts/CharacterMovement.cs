@@ -16,6 +16,8 @@ public class CharacterMovement : MonoBehaviour
 
    // Rigidbody rb;
     InputAction move;
+
+    public Animator animator;
     
 
     // InputAction move;
@@ -96,8 +98,16 @@ public class CharacterMovement : MonoBehaviour
 
 
        if(groundedPlayer)
+       {
+
             // controller.Move(new Vector3(moveDirection.x, 0f, moveDirection.y) * Time.deltaTime * playerSpeed);
             controller.Move(cameraRelativeMovement * Time.deltaTime * playerSpeed);
+            // bool isRunning = animator.GetBool("isRunning");
+           // animator.SetBool("isRunning", true);
+       }
+    //    else
+    //         animator.SetBool("isRunning", false);
+
             
 
         if (moveDirection != Vector2.zero)
@@ -119,7 +129,11 @@ public class CharacterMovement : MonoBehaviour
             // var relative = (transform.position + skewedDirection) - transform.position;
             // var rot = Quaternion.LookRotation(relative, Vector3.up);
             // transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360f *Time.deltaTime);
+            animator.SetBool("isRunning", true);
         }
+            else
+            animator.SetBool("isRunning", false);
+
 
         // Changes the height position of the player..
         // if (Input.GetButtonDown("Jump") && groundedPlayer)
