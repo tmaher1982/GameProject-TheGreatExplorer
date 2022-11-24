@@ -18,6 +18,7 @@ public class EnemyPatrol : MonoBehaviour
         // between points (ie, the agent doesn't slow down as it
         // approaches a destination point).
         agent.autoBraking = false;
+
         // Choose random waypoint
         destPoint = Random.Range(0, points.Length);
 
@@ -35,10 +36,10 @@ public class EnemyPatrol : MonoBehaviour
 
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
-        // Choose random waypoint
-
-        destPoint = Random.Range(0, points.Length);
         // destPoint = (destPoint + 1) % points.Length;
+        
+        // Choose random waypoint
+        destPoint = Random.Range(0, points.Length);
     }
     void Update()
     {

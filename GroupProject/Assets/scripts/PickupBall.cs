@@ -43,30 +43,31 @@ public class PickupBall : MonoBehaviour
         restartLevel.Disable();
     }
 
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
-        //Picking up objects, maybe change back to original method with hinge joint
+        //Picking up objects, maybe change back to original method with hinge joint or just have the character hold the ball
         //https://www.youtube.com/watch?v=6bFCQqabfzo&ab_channel=SpeedTutor
-      //  bool clicked = Mouse.current.leftButton.wasPressedThisFrame;
-        // bool clicked = click.ReadValue<>();
+      
+        // Visualize the raycasts
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward *pickupRange), Color.cyan);
         Debug.DrawRay(transform.position+ new Vector3(-0.25f, 0, 0), transform.TransformDirection(Vector3.forward *pickupRange), Color.red);
         Debug.DrawRay(transform.position+ new Vector3(0.25f, 0, 0), transform.TransformDirection(Vector3.forward *pickupRange), Color.green);
 
+        // If we aren't holding a ball, we check in front of the character for balls
+        // This only checks for balls and highlights them. Click() actually grabs the balls.
         if (heldObj == null)
         {
             RaycastHit hit;
             float rayOffset = 0.25f;
+
+            // Three raycasts instead of one to make it easier to select the ball
+            // Still not great, maybe try 'Physics.OverlapSphere' instead
             for (int i = -1; i < 2; i++)
             {
                 if(Physics.Raycast(transform.position + new Vector3(rayOffset * i, 0, 0), transform.TransformDirection(Vector3.forward), out hit, pickupRange, LayerMask.GetMask("Ball")))
                 {
-                    //Highlight
+                    // Highlight - get the HighLightBall script that is on the ball and tell it to be lit.
                     Debug.Log(hit.transform.name);
                     hit.collider.GetComponent<HighLightBall>().SetLit();
                     break;
@@ -79,13 +80,14 @@ public class PickupBall : MonoBehaviour
     {
         if(heldObj != null)
         {
-            //move it
+            // Move the ball
             MoveObject();
         }    
     }
 
     void MoveObject()
     {
+        // Try to keep the ball at the position of the 'holdarea'/ 'AttachPoint of the character 
         if(Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.01f)
         {
             Vector3 moveDirection = (holdArea.position - heldObj.transform.position);
@@ -122,6 +124,8 @@ public class PickupBall : MonoBehaviour
     }
     void Click(InputAction.CallbackContext context)
     {
+        // Player has mouse clicked or pressed 'z' or hit the south button on the controller
+
          if(heldObj == null)
             {
                 RaycastHit hit;
@@ -131,7 +135,7 @@ public class PickupBall : MonoBehaviour
                 {
                     if(Physics.Raycast(transform.position + new Vector3(rayOffset * i, 0, 0), transform.TransformDirection(Vector3.forward), out hit, pickupRange, LayerMask.GetMask("Ball")))
                     {
-                        //pickup
+                        // Pick up the ball
                         Debug.Log(hit.transform.name);
                         PickupObject(hit.transform.gameObject);
                         break;
@@ -140,11 +144,12 @@ public class PickupBall : MonoBehaviour
             }
             else
             {
-                //drop
+                //Drop the ball
                 DropObject();
             }
     }
 
+    // This should be somewhere else
     void RestartLevel( InputAction.CallbackContext context)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

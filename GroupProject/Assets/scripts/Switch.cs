@@ -9,6 +9,7 @@ public class Switch : MonoBehaviour
     bool activated = false;
     void Start()
     {
+        // Particle effect that plays when the ball is on the switch
         ringEffect = GetComponent<ParticleSystem>();
         ringEffect.Stop();
     }

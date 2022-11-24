@@ -8,24 +8,17 @@ public class CharacterMovement : MonoBehaviour
     public MyInputs playerControls;
 
     Vector2 moveDirection = Vector2.zero;
-    public Transform mainCamParent;
     public Camera mainCam;
 
-    public float movementSpeed;
+    public float movementSpeed = 3.0f;
     public float rotationSpeed;
 
-   // Rigidbody rb;
     InputAction move;
 
     public Animator animator;
-    
-
-    // InputAction move;
 
     CharacterController controller;
-     private Vector3 playerVelocity;
     public bool groundedPlayer;
-    private float playerSpeed = 2.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
 
@@ -34,12 +27,12 @@ public class CharacterMovement : MonoBehaviour
 
     private void Awake() 
     {
+        // Input settings
         playerControls = new MyInputs();   
-        playerSpeed = movementSpeed;
+
     }
     private void OnEnable() 
     {
-        // playerControls.Enable();
         move = playerControls.Player.Move;
         move.Enable();
     }
@@ -51,9 +44,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Start()
     {
-       // rb = GetComponent<Rigidbody>();
        controller = GetComponent<CharacterController>();
-       //mainCam = Camera.main;
     }
 
     void Update()
@@ -61,20 +52,20 @@ public class CharacterMovement : MonoBehaviour
         // For now just rotate the player when not alive
         if(!alive && !invincible)
         {
+            // Drop the ball
             GetComponent<PickupBall>().DropObject();
+            // And play dead
             transform.rotation = Quaternion.Euler(90f, 0f,0f);
             return;
-
         }
-        
-        // var movement = Input.GetAxis(("Vertical"));
-        // var turn = Input.GetAxis(("Horizontal"));
-        moveDirection = move.ReadValue<Vector2>();
-        // moveDirection.Normalize();
-      //  moveDirection = Vector2.ClampMagnitude(moveDirection, 1f);
 
-        // Vector3 forward = mainCamParent.transform.forward ;
-        // Vector3 right = mainCamParent.transform.right ;
+        // Get player input        
+        moveDirection = move.ReadValue<Vector2>();
+        
+        // Prevent character from moving faster diagonally (when using keyboard)
+        moveDirection = Vector2.ClampMagnitude(moveDirection, 1f);
+
+        // Align character movement with camera rotation
         Vector3 forward = mainCam.transform.forward ;
         Vector3 right = mainCam.transform.right ;
         forward.y = 0f;
@@ -85,83 +76,45 @@ public class CharacterMovement : MonoBehaviour
         Vector3 rightRelativeHorizontalInput = moveDirection.x * right;
 
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
-       
-       // moveDirection = cameraRelativeMovement;
-        //moveDirection = move
-        groundedPlayer = controller.isGrounded;
-        // if (groundedPlayer && playerVelocity.y < 0)
-        // {
-        //     playerVelocity.y = 0f;
-        // }
-
-       // Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-
-       if(groundedPlayer)
-       {
-
-            // controller.Move(new Vector3(moveDirection.x, 0f, moveDirection.y) * Time.deltaTime * playerSpeed);
-            controller.Move(cameraRelativeMovement * Time.deltaTime * playerSpeed);
-            // bool isRunning = animator.GetBool("isRunning");
-           // animator.SetBool("isRunning", true);
-       }
-    //    else
-    //         animator.SetBool("isRunning", false);
-
-            
-
+    
+        // Rotate the character to the direction of the player input accounting for the camera rotation
         if (moveDirection != Vector2.zero)
         {
-            Vector3 lookAt;
-            lookAt.x = moveDirection.x;
-            lookAt.y = 0f;
-            lookAt.z = moveDirection.y;
+            Vector3 lookAt = Vector3.zero;;
 
             lookAt.x = cameraRelativeMovement.x;
             lookAt.z = cameraRelativeMovement.z;
 
-
             Quaternion currentRotation = transform.rotation;
             Quaternion targetRotation = Quaternion.LookRotation(lookAt);
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed *Time.deltaTime);
-            //gameObject.transform.forward = new Vector3(moveDirection.x, 0f, moveDirection.y);
-
-            // var relative = (transform.position + skewedDirection) - transform.position;
-            // var rot = Quaternion.LookRotation(relative, Vector3.up);
-            // transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360f *Time.deltaTime);
+          
+            // Player is pressing the move button so play the running animation
             animator.SetBool("isRunning", true);
         }
-            else
+        else
             animator.SetBool("isRunning", false);
 
 
-        // Changes the height position of the player..
-        // if (Input.GetButtonDown("Jump") && groundedPlayer)
-        // {
-        //     playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        // }
+        // If the character is on the ground, it can move. If it is falling we don't want to allow movement
+        groundedPlayer = controller.isGrounded;
 
-        if(!groundedPlayer)
-            playerVelocity.y += gravityValue * Time.deltaTime;// *0.1f;
+        if(groundedPlayer)
+        {
+          controller.Move(cameraRelativeMovement * Time.deltaTime * movementSpeed);
+        }
 
-        controller.Move(playerVelocity * Time.deltaTime);
-        
-    }
-
-    private void FixedUpdate() 
-    {
-        //rb.velocity = moveDirection.y* transform.forward* movementSpeed;
-        //rb.angularVelocity = new Vector3(0, moveDirection.x, 0) * rotationSpeed;
-        
+        // The character controller's isGrounded value 'flickers'. Applying 'gravity' keeps it stable and makes the character fall! 
+        controller.Move(new Vector3(0, gravityValue, 0) * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other) 
     {
+        // Check if we've been touched by 'enemies' 
         if(other.tag == "Enemy")
         {
            Debug.Log("Hit", other);
            alive = false;
         }
-        
     }
 }
