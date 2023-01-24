@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class CharacterMovement : MonoBehaviour
 {
+
+    public delegate void PlayerDeath();
+    public static event PlayerDeath onPlayerDeath;
+
+    [SerializeField]
+    UnityEvent onPlayerDied;
+
     public MyInputs playerControls;
 
     Vector2 moveDirection = Vector2.zero;
@@ -113,8 +121,9 @@ public class CharacterMovement : MonoBehaviour
         // Check if we've been touched by 'enemies' 
         if(other.tag == "Enemy")
         {
-           Debug.Log("Hit", other);
-           alive = false;
+            Debug.Log("Hit", other);
+            alive = false;
+            onPlayerDeath.Invoke(); 
         }
     }
 }
