@@ -123,7 +123,7 @@ public class CharacterMovement : MonoBehaviour
         {
             Debug.Log("Hit", other);
             alive = false;
-            onPlayerDeath.Invoke(); 
+            onPlayerDied.Invoke(); 
         }
     }
 }
