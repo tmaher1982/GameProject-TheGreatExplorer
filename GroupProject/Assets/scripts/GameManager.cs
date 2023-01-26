@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameState state;
     public UnityEvent OnGameStateChanged;
     public UnityEvent OnGameOver;
+    public UnityEvent onPlayerDied;
+
     public Transform playerSpawnPoint;
 
     public int playerLives;
