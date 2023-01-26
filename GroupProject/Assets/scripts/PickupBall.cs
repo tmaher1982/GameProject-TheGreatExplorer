@@ -68,7 +68,7 @@ public class PickupBall : MonoBehaviour
                 if(Physics.Raycast(transform.position + new Vector3(rayOffset * i, 0, 0), transform.TransformDirection(Vector3.forward), out hit, pickupRange, LayerMask.GetMask("Ball")))
                 {
                     // Highlight - get the HighLightBall script that is on the ball and tell it to be lit.
-                    Debug.Log(hit.transform.name);
+                    // Debug.Log(hit.transform.name);
                     hit.collider.GetComponent<HighLightBall>().SetLit();
                     break;
                 }
@@ -82,7 +82,12 @@ public class PickupBall : MonoBehaviour
         {
             // Move the ball
             MoveObject();
+            GameManager.instance.playerHasObject = true;
         }    
+        else
+        {
+            GameManager.instance.playerHasObject = false;
+        }
     }
 
     void MoveObject()

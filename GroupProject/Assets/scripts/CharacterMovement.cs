@@ -50,58 +50,63 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         // For now just rotate the player when not alive
-        if(!alive && !invincible)
+        if(!GameManager.instance.playerIsAlive && !invincible)
         {
             // Drop the ball
             GetComponent<PickupBall>().DropObject();
             // And play dead
             transform.rotation = Quaternion.Euler(90f, 0f,0f);
+            animator.SetBool("isRunning", false);
             return;
         }
 
-        // Get player input        
-        moveDirection = move.ReadValue<Vector2>();
+
+        if(GameManager.instance.state == GameState.InGame)
+        {
+            // Get player input        
+            moveDirection = move.ReadValue<Vector2>();
+            
+            // Prevent character from moving faster diagonally (when using keyboard)
+            moveDirection = Vector2.ClampMagnitude(moveDirection, 1f);
+
+            // Align character movement with camera rotation
+            Vector3 forward = mainCam.transform.forward ;
+            Vector3 right = mainCam.transform.right ;
+            forward.y = 0f;
+            right.y = 0f;
+            forward = forward.normalized;
+            right = right.normalized;
+            Vector3 forwardRelativeVerticalInput = moveDirection.y * forward;
+            Vector3 rightRelativeHorizontalInput = moveDirection.x * right;
+
+            Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
         
-        // Prevent character from moving faster diagonally (when using keyboard)
-        moveDirection = Vector2.ClampMagnitude(moveDirection, 1f);
+            // Rotate the character to the direction of the player input accounting for the camera rotation
+            if (moveDirection != Vector2.zero)
+            {
+                Vector3 lookAt = Vector3.zero;;
 
-        // Align character movement with camera rotation
-        Vector3 forward = mainCam.transform.forward ;
-        Vector3 right = mainCam.transform.right ;
-        forward.y = 0f;
-        right.y = 0f;
-        forward = forward.normalized;
-        right = right.normalized;
-        Vector3 forwardRelativeVerticalInput = moveDirection.y * forward;
-        Vector3 rightRelativeHorizontalInput = moveDirection.x * right;
+                lookAt.x = cameraRelativeMovement.x;
+                lookAt.z = cameraRelativeMovement.z;
 
-        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
-    
-        // Rotate the character to the direction of the player input accounting for the camera rotation
-        if (moveDirection != Vector2.zero)
-        {
-            Vector3 lookAt = Vector3.zero;;
-
-            lookAt.x = cameraRelativeMovement.x;
-            lookAt.z = cameraRelativeMovement.z;
-
-            Quaternion currentRotation = transform.rotation;
-            Quaternion targetRotation = Quaternion.LookRotation(lookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed *Time.deltaTime);
-          
-            // Player is pressing the move button so play the running animation
-            animator.SetBool("isRunning", true);
-        }
-        else
-            animator.SetBool("isRunning", false);
+                Quaternion currentRotation = transform.rotation;
+                Quaternion targetRotation = Quaternion.LookRotation(lookAt);
+                transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed *Time.deltaTime);
+            
+                // Player is pressing the move button so play the running animation
+                animator.SetBool("isRunning", true);
+            }
+            else
+                animator.SetBool("isRunning", false);
 
 
-        // If the character is on the ground, it can move. If it is falling we don't want to allow movement
-        groundedPlayer = controller.isGrounded;
+            // If the character is on the ground, it can move. If it is falling we don't want to allow movement
+            groundedPlayer = controller.isGrounded;
 
-        if(groundedPlayer)
-        {
-          controller.Move(cameraRelativeMovement * Time.deltaTime * movementSpeed);
+            if(groundedPlayer)
+            {
+            controller.Move(cameraRelativeMovement * Time.deltaTime * movementSpeed);
+            }
         }
 
         // The character controller's isGrounded value 'flickers'. Applying 'gravity' keeps it stable and makes the character fall! 
@@ -111,10 +116,11 @@ public class CharacterMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         // Check if we've been touched by 'enemies' 
-        if(other.tag == "Enemy")
+        if(other.tag == "Enemy" && GameManager.instance.playerIsAlive && GameManager.instance.state == GameState.InGame)
         {
            Debug.Log("Hit", other);
-           alive = false;
+          // alive = false;
+           GameManager.instance.UpdateGameState(GameState.PlayerDead);
         }
     }
 }
