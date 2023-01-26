@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.PlayerDead:
+                onPlayerDied.Invoke(); 
                 playerLives -= 1;
 
                 playerIsAlive = false;

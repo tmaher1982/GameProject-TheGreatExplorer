@@ -10,8 +10,8 @@ public class CharacterMovement : MonoBehaviour
     public delegate void PlayerDeath();
     public static event PlayerDeath onPlayerDeath;
 
-    [SerializeField]
-    UnityEvent onPlayerDied;
+   // [SerializeField]
+    // UnityEvent onPlayerDied;
 
     public MyInputs playerControls;
 
@@ -129,7 +129,7 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log("Hit", other);
            // alive = false;
            GameManager.instance.UpdateGameState(GameState.PlayerDead);
-            onPlayerDied.Invoke(); 
+           
         }
     }
 }
