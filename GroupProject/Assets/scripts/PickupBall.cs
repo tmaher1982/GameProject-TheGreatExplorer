@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 
 public class PickupBall : MonoBehaviour
@@ -19,7 +18,6 @@ public class PickupBall : MonoBehaviour
 
     public MyInputs playerControls;
     InputAction click;
-    InputAction restartLevel;
 
 
     private void Awake() 
@@ -31,16 +29,11 @@ public class PickupBall : MonoBehaviour
        click = playerControls.Player.Fire;
        click.Enable();
        click.performed += Click;
-
-       restartLevel = playerControls.Player.Restart;
-       restartLevel.Enable();
-       restartLevel.performed += RestartLevel;
     }
 
     private void OnDisable() 
     {
         click.Disable();   
-        restartLevel.Disable();
     }
 
 
@@ -152,11 +145,5 @@ public class PickupBall : MonoBehaviour
                 //Drop the ball
                 DropObject();
             }
-    }
-
-    // This should be somewhere else
-    void RestartLevel( InputAction.CallbackContext context)
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

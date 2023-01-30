@@ -3,10 +3,13 @@ using System.Collections.Generic;
 // using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+
 
 public class GameManager : MonoBehaviour
 {
-    // Game Manger Tutorial
+    // Game Manager Tutorial
     // https://www.youtube.com/watch?v=4I0vonyqMi8
     // Unity Events Tutorial
     // https://www.youtube.com/watch?v=ax1DiSutEy8
@@ -17,6 +20,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent onPlayerDied;
 
     public Transform playerSpawnPoint;
+
+    public MyInputs playerControls;
+    InputAction restartLevel;
+
 
     public int playerLives;
     public float levelTimer;
@@ -32,10 +39,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
 
         levelTimer = 50;
         playerLives = 3;
         UpdateGameState(GameState.InGame);
+
+        playerControls = new MyInputs();   
+      
     }
 
     public void UpdateGameState(GameState newState)
@@ -108,6 +119,23 @@ public class GameManager : MonoBehaviour
         player.transform.position = playerSpawnPoint.transform.position;
         player.transform.rotation = Quaternion.Euler(0f, 0f,0f);
     }
+
+    private void OnEnable() 
+    {
+        restartLevel = playerControls.Player.Restart;
+        restartLevel.Enable();
+        restartLevel.performed += RestartLevel;
+    }
+
+    private void OnDisable() 
+    {
+        restartLevel.Disable();
+    }
+    // This should be somewhere else
+    void RestartLevel( InputAction.CallbackContext context)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
 
 public enum GameState
@@ -116,5 +144,8 @@ public enum GameState
     InGame,
     Paused,
     PlayerDead,
-    GameOver
+    GameOver, 
+    LevelCompleted, 
+    TransitionIn,
+    TransitionOut
 }
