@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameOver;
     public UnityEvent onPlayerDied;
 
+    //Game paused event (To display menu for example)
+     public UnityEvent onGamePaused;
+
     public Transform playerSpawnPoint;
 
     public MyInputs playerControls;
@@ -68,7 +71,12 @@ public class GameManager : MonoBehaviour
                 }
                 StartCoroutine(WaitAfterDeath());
                 break;
-            
+
+            case GameState.Paused:
+                // Freeze game
+                Time.timeScale = 0;
+                break;
+
             default:
                 break;
         }
@@ -89,6 +97,10 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.InGame:
+                // Check if game is frozen
+                if (Time.timeScale == 0)
+                    Time.timeScale = 1;
+
                 levelTimer-=Time.deltaTime;
 
                 if(levelTimer < 0.1)
@@ -103,6 +115,11 @@ public class GameManager : MonoBehaviour
             case GameState.GameOver:
                 OnGameOver.Invoke();
                 break;
+
+            case GameState.Paused:
+                UpdateGameState(GameState.Paused);
+                break;
+
 
             default:
                 break;
