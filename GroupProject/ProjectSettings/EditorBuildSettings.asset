@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/chew2.unity
-    guid: c7a020293896bd6428e7ccdf69dad907
-  - enabled: 0
-    path: Assets/Scenes/Chew_MultiLevel.unity
-    guid: e6dec340062479c4e94976a9363cd5e2
   - enabled: 1
     path: Assets/Scenes/Title_test.unity
     guid: 5d53feec94a11e44e901b291fba3715a
   - enabled: 1
     path: Assets/Scenes/Example_Scene.unity
     guid: 68738c46a45a40b48b1dbd90f0256aae
+  - enabled: 1
+    path: Assets/Scenes/Scene2.unity
+    guid: 0c3674645072de84fbefd02b7b20c564
+  - enabled: 0
+    path: Assets/Scenes/Chew_MultiLevel.unity
+    guid: e6dec340062479c4e94976a9363cd5e2
+  - enabled: 0
+    path: Assets/Scenes/chew2.unity
+    guid: c7a020293896bd6428e7ccdf69dad907
   m_configObjects: {}

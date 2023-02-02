@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-// using System;
+//using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -17,10 +17,10 @@ public class GameManager : MonoBehaviour
     public GameState state;
     public UnityEvent OnGameStateChanged;
     public UnityEvent OnGameOver;
+    public UnityEvent OnLevelComplete;
     public UnityEvent onPlayerDied;
 
     public Transform playerSpawnPoint;
-
     public MyInputs playerControls;
     InputAction restartLevel;
 
@@ -39,14 +39,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
-
-        levelTimer = 50;
+        // DontDestroyOnLoad(instance);
+        levelTimer = 150;
         playerLives = 3;
-        UpdateGameState(GameState.InGame);
 
         playerControls = new MyInputs();   
-      
+        UpdateGameState(GameState.InGame);
+        OnGameStateChanged.Invoke();
+
+    }
+
+    void Start()
+    {
     }
 
     public void UpdateGameState(GameState newState)
@@ -56,7 +60,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.PlayerDead:
-                onPlayerDied.Invoke(); 
+                onPlayerDied?.Invoke(); 
                 playerLives -= 1;
 
                 playerIsAlive = false;
@@ -69,19 +73,26 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(WaitAfterDeath());
                 break;
             
+            case GameState.LevelCompleted:
+                OnLevelComplete?.Invoke();
+                break;
+            
+            case GameState.InGame:
+                
+                break;
+
+            case GameState.LevelStart:
+                
+                break;
+
             default:
                 break;
         }
 
-        OnGameStateChanged.Invoke();
+        OnGameStateChanged?.Invoke();
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-      
-        
-    }
+ 
 
     // Update is called once per frame
     void Update()
@@ -89,7 +100,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.InGame:
-                levelTimer-=Time.deltaTime;
+                levelTimer -= Time.deltaTime;
 
                 if(levelTimer < 0.1)
                 {
@@ -101,7 +112,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOver:
-                OnGameOver.Invoke();
+                OnGameOver?.Invoke();
                 break;
 
             default:
@@ -110,6 +121,27 @@ public class GameManager : MonoBehaviour
        
     }
 
+    public void SetGameStateToTransitionOut()
+    {
+        /*if you want to provide a function to an event in the inspector, the function must meet the following requirements:
+        1. The function must be public
+        2. The function must have a return type of void
+        3. The function must take no or one parameter
+        4. If the function takes one parameter, the latter must be one of the following types:
+                        int
+                        float
+                        string
+                        bool*/
+
+        UpdateGameState(GameState.TransitionOut);
+    }
+    public void refreshgamestate()
+    {
+        // OnGameStateChanged.Invoke();
+        // UpdateGameState(GameState.InGame);
+        Debug.Log(state);
+
+    }
     IEnumerator WaitAfterDeath()
     {
         yield return new WaitForSeconds(3);
@@ -122,16 +154,24 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable() 
     {
+
         restartLevel = playerControls.Player.Restart;
         restartLevel.Enable();
         restartLevel.performed += RestartLevel;
-    }
 
+        // Debug
+        Debug.Log("GAME MANAGER OnENable");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
     private void OnDisable() 
     {
         restartLevel.Disable();
     }
-    // This should be somewhere else
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+         Debug.Log("OnSceneLoaded: " + scene.name);
+    }
+    // This 
     void RestartLevel( InputAction.CallbackContext context)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -147,5 +187,6 @@ public enum GameState
     GameOver, 
     LevelCompleted, 
     TransitionIn,
-    TransitionOut
+    TransitionOut,
+    GamePaused
 }

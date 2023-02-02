@@ -9,15 +9,10 @@ public class CharacterMovement : MonoBehaviour
 
     public delegate void PlayerDeath();
     public static event PlayerDeath onPlayerDeath;
-
-   // [SerializeField]
-    // UnityEvent onPlayerDied;
-
     public MyInputs playerControls;
 
     Vector2 moveDirection = Vector2.zero;
     public Camera mainCam;
-
     public float movementSpeed = 3.0f;
     public float rotationSpeed;
 
@@ -36,7 +31,9 @@ public class CharacterMovement : MonoBehaviour
     private void Awake() 
     {
         // Input settings
-        playerControls = new MyInputs();   
+        playerControls = new MyInputs();  
+        transform.position = GameManager.instance.playerSpawnPoint.position;
+
 
     }
     private void OnEnable() 
@@ -50,6 +47,7 @@ public class CharacterMovement : MonoBehaviour
         move.Disable();   
     }
 
+    
     void Start()
     {
        controller = GetComponent<CharacterController>();
@@ -124,7 +122,7 @@ public class CharacterMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         // Check if we've been touched by 'enemies' 
-        if(other.tag == "Enemy" && GameManager.instance.playerIsAlive && GameManager.instance.state == GameState.InGame)
+        if(other.tag == "Enemy" && GameManager.instance.playerIsAlive && GameManager.instance.state == GameState.InGame && !invincible)
         {
             Debug.Log("Hit", other);
            // alive = false;

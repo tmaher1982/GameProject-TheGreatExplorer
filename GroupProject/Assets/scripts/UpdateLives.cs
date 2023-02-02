@@ -23,10 +23,13 @@ public class UpdateLives : MonoBehaviour
     {
         
     }
+    
 
     public void updateLives()
     {
         int numLives = GameManager.instance.playerLives;
+        livesText = GetComponent<TextMeshProUGUI>();     
+       
         if(numLives < 0)
             numLives = 0;
         livesText.text = "Lives<voffset=0.21em>: <voffset=0em>" + numLives.ToString();
