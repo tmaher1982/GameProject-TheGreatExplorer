@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent onPlayerDied;
 
     //Game paused event (To display menu for example)
-     public UnityEvent onGamePaused;
+    public UnityEvent onGamePaused;
 
     public Transform playerSpawnPoint;
 
