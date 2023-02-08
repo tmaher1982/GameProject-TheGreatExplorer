@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
                 }
                 StartCoroutine(WaitAfterDeath());
                 break;
-<<<<<<< HEAD
             
             case GameState.LevelCompleted:
                 OnLevelComplete?.Invoke();
@@ -87,12 +86,10 @@ public class GameManager : MonoBehaviour
 
             case GameState.LevelStart:
                 
-=======
 
             case GameState.Paused:
                 // Freeze game
                 Time.timeScale = 0;
->>>>>>> main
                 break;
 
             default:
@@ -110,15 +107,12 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.InGame:
-<<<<<<< HEAD
                 levelTimer -= Time.deltaTime;
-=======
                 // Check if game is frozen
                 if (Time.timeScale == 0)
                     Time.timeScale = 1;
 
                 levelTimer-=Time.deltaTime;
->>>>>>> main
 
                 if(levelTimer < 0.1)
                 {
