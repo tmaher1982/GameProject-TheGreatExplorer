@@ -6066,7 +6066,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5598973692577603467}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -17867,6 +17867,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 543450652514244262}
   rotationSpeed: 0.25
+--- !u!114 &1343411271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1175778759451193070, guid: 8ea7b330cfacb584ebf86e101699e78d,
+    type: 3}
+  m_PrefabInstance: {fileID: 336320524}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34e7fe8498d1fa4db5b44c3c0013027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1365761857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb8bb617940c98040879672b69efa583,
@@ -28661,6 +28673,17 @@ MonoBehaviour:
       - m_Target: {fileID: 7123746882659504431}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1343411271}
+        m_MethodName: FadeIn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

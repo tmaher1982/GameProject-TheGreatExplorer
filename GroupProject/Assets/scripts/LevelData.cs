@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//  The switch check could be moved to game manager and the 'level data' could be moved to ...somewhere?
 public class LevelData : MonoBehaviour
 {
     public float levelTimeLimit;
