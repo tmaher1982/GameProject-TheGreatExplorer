@@ -15,6 +15,8 @@ public class UpdateTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timerText = GetComponent<TextMeshProUGUI>();     
+
         timerText.text = "Time: " + Mathf.Floor(GameManager.instance.levelTimer).ToString();
     }
 
