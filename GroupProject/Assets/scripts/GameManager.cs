@@ -22,10 +22,12 @@ public class GameManager : MonoBehaviour
 
     //Game paused event (To display menu for example)
     public UnityEvent onGamePaused;
+    public UnityEvent onGameResume;
 
     public Transform playerSpawnPoint;
     public MyInputs playerControls;
     InputAction restartLevel;
+    InputAction pauseGame;
 
 
     public int playerLives;
@@ -176,6 +178,10 @@ public class GameManager : MonoBehaviour
         restartLevel.Enable();
         restartLevel.performed += RestartLevel;
 
+        pauseGame = playerControls.Player.Pause;
+        pauseGame.Enable();
+        pauseGame.performed += PauseGame;
+
         // Debug
         Debug.Log("GAME MANAGER OnENable");
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -183,6 +189,8 @@ public class GameManager : MonoBehaviour
     private void OnDisable() 
     {
         restartLevel.Disable();
+
+        pauseGame.Disable();
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -192,6 +200,22 @@ public class GameManager : MonoBehaviour
     void RestartLevel( InputAction.CallbackContext context)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void PauseGame(InputAction.CallbackContext context)
+    {
+        if (this.state == GameState.InGame)
+        {
+            Debug.Log("Pause");
+            this.UpdateGameState(GameState.Paused);
+            this.onGamePaused?.Invoke();
+        }
+        else if (this.state == GameState.Paused)
+        {
+            Debug.Log("Resume");
+            this.UpdateGameState(GameState.InGame);
+            this.onGameResume?.Invoke();
+        }
     }
 }
 
