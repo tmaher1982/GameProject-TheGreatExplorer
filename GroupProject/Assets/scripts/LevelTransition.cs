@@ -29,14 +29,14 @@ public class LevelTransition : MonoBehaviour
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene("Example_Scene");
+        SceneManager.LoadScene("Level1");
     }
     IEnumerator LoadTitleScreen()
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         Destroy(GameManager.instance);
-        SceneManager.LoadScene("Title_Test");
+        SceneManager.LoadScene("Title");
     }
     IEnumerator LoadNextLevel()
     {
