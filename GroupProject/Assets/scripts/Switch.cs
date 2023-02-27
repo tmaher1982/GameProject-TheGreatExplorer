@@ -33,6 +33,15 @@ public class Switch : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject == activationObject)
+        {
+            // Trigger hover movement when the correct ball is on the switch
+            other.attachedRigidbody.AddForce(Vector3.up * 8, ForceMode.Acceleration);
+        }
+    }
+
     private void OnTriggerExit(Collider other) 
     {
         if(other.gameObject == activationObject)    
