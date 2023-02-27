@@ -28706,6 +28706,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onGamePaused:
+    m_PersistentCalls:
+      m_Calls: []
   playerSpawnPoint: {fileID: 914315468}
   playerLives: 5
   levelTimer: 250
@@ -36873,7 +36876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 6015615347485893025}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &2140561922
@@ -37496,12 +37499,6 @@ Transform:
   m_Father: {fileID: 543450652514244262}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6015615347485893025 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6015615347149978029, guid: 8ea7b330cfacb584ebf86e101699e78d,
-    type: 3}
-  m_PrefabInstance: {fileID: 336320524}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6174616487944238951
 Transform:
   m_ObjectHideFlags: 0
