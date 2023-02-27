@@ -38,7 +38,8 @@ public class Switch : MonoBehaviour
         if(other.gameObject == activationObject)
         {
             // Trigger hover movement when the correct ball is on the switch
-            other.attachedRigidbody.AddForce(Vector3.up * 8, ForceMode.Acceleration);
+            other.attachedRigidbody.AddForce(Vector3.up * 6, ForceMode.Acceleration);
+            other.attachedRigidbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX;
         }
     }
 
