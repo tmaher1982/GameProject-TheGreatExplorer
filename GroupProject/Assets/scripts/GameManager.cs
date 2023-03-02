@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         // DontDestroyOnLoad(instance);
-        levelTimer = 150;
-        playerLives = 3;
+        // levelTimer = 150;
+        // playerLives = 3;
 
         playerControls = new MyInputs();   
         UpdateGameState(GameState.InGame);
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.InGame:
-                levelTimer -= Time.deltaTime;
+                // levelTimer -= Time.deltaTime;
                 // Check if game is frozen
                 if (Time.timeScale == 0)
                     Time.timeScale = 1;
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
          Debug.Log("OnSceneLoaded: " + scene.name);
     }
     // This 
-    void RestartLevel( InputAction.CallbackContext context)
+    void RestartLevel(InputAction.CallbackContext context)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
