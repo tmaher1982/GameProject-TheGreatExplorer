@@ -10,6 +10,7 @@ public class CameraPosition : MonoBehaviour
     public MyInputs playerControls;
     InputAction look;
     float rotationAngle = 0.0f;
+    public bool isPaused = false;
 
     private void Awake() 
     {
@@ -36,10 +37,19 @@ public class CameraPosition : MonoBehaviour
         Vector3 rot = look.ReadValue<Vector2>();
         
         // Rotate around the Y-axis
-        transform.Rotate(transform.rotation.x, rot.x* rotationSpeed , transform.rotation.z );
+        if (!isPaused)
+        {
+            transform.Rotate(transform.rotation.x, rot.x * rotationSpeed, transform.rotation.z);
+        }
       
         // Follow the player
         transform.position = Vector3.Lerp(transform.position, player.position , 10.0f * Time.deltaTime);
         
+    }
+
+    void setPaused()
+    {
+        Debug.Log("setPaused");
+        isPaused = !isPaused;
     }
 }
