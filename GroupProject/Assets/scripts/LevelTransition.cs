@@ -25,6 +25,11 @@ public class LevelTransition : MonoBehaviour
         StartCoroutine(LoadNextLevel());
     }
 
+    public void QuitToTitle()
+    {
+        StartCoroutine(ReloadTitleScreen());
+    }
+
     IEnumerator LoadScene()
     {
         transition.SetTrigger("Start");
@@ -44,5 +49,14 @@ public class LevelTransition : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
         Destroy(GameManager.instance);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    IEnumerator ReloadTitleScreen()
+    {
+        Debug.Log("Quit to title");
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+        //Destroy(GameManager.instance);
+        SceneManager.LoadScene("Title");
     }
 }
