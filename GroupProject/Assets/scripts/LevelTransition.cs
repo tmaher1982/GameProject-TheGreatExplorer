@@ -54,9 +54,11 @@ public class LevelTransition : MonoBehaviour
     IEnumerator ReloadTitleScreen()
     {
         Debug.Log("Quit to title");
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
         transition.SetTrigger("Start");
-        yield return new WaitForSeconds(transitionTime);
-        //Destroy(GameManager.instance);
+        yield return new WaitForSeconds(0.1f);
+        Destroy(GameManager.instance);
         SceneManager.LoadScene("Title");
     }
 }
