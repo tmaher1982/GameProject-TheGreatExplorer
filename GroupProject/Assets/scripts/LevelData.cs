@@ -37,8 +37,6 @@ public class LevelData : MonoBehaviour
 
         if(count == switches.Length)
         {
-            Debug.Log("All switches on");
-            //
             GameManager.instance.UpdateGameState(GameState.LevelCompleted);
         }
 
