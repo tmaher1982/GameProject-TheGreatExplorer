@@ -14,7 +14,7 @@ public class GameOverSound : MonoBehaviour
     
     }
 
-    public void PlayerDeathSound()
+    public void GameOverSound()
     {
         GameOver.Play();
     }
