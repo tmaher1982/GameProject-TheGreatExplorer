@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSounds : MonoBehaviour
+public class LevelMusic : MonoBehaviour
 {
-
-    AudioSource sounds;
+    AudioSource music;
     // Start is called before the first frame update
     void Start()
     {
-        sounds = GetComponent<AudioSource>();
+        music = GetComponent<AudioSource>();
     }
 
-    public void PlayerDeathSound()
+    public void PlayLevelMusic()
     {
-        sounds.Play();
+        music.Play();
     }
 }
