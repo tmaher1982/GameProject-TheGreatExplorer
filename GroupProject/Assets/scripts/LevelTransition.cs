@@ -34,7 +34,7 @@ public class LevelTransition : MonoBehaviour
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Tutorial2");
     }
     IEnumerator LoadTitleScreen()
     {
