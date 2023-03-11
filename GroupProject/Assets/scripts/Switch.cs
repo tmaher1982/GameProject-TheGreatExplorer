@@ -10,6 +10,8 @@ public class Switch : MonoBehaviour
     ParticleSystem ringEffect;
     public bool activated = false;
     LevelData levelData;
+    [SerializeField] UnityEvent onSwitchActivated;
+
     void Start()
     {
         // Particle effect that plays when the ball is on the switch
@@ -29,6 +31,8 @@ public class Switch : MonoBehaviour
                 activated = true;
                 ringEffect.Play();
                 levelData.checkSwitches();
+                onSwitchActivated?.Invoke();
+
             }
         }
     }
