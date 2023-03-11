@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 3c44b25df99ebf141baa5d92001f76c7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6f28a1617aebf4d6b8cd2a292673beb1, type: 2}
 --- !u!1 &27691563
 GameObject:
   m_ObjectHideFlags: 0
@@ -5861,9 +5861,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.32
-  m_Height: 3.7502167
+  m_Height: 1.2863723
   m_Direction: 2
-  m_Center: {x: 2.5132706e-21, y: -5.330617e-15, z: 1.3751086}
+  m_Center: {x: 2.1691103e-22, y: -2.5844034e-16, z: 0.14318609}
 --- !u!1001 &245820878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12448,7 +12448,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 87890a66193394e3cb7d6284cc6b4344, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -24517,7 +24517,18 @@ MonoBehaviour:
   activated: 0
   onSwitchActivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1104319731}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!136 &1473262229
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -24529,9 +24540,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.32
-  m_Height: 3.737222
+  m_Height: 1.2714556
   m_Direction: 2
-  m_Center: {x: 2.4912566e-21, y: -5.238284e-15, z: 1.3686112}
+  m_Center: {x: 1.9164122e-22, y: -1.5245111e-16, z: 0.13572776}
 --- !u!1001 &1483309432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24750,7 +24761,18 @@ MonoBehaviour:
   activated: 0
   onSwitchActivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1104319731}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!198 &1497289088
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -29483,9 +29505,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.32
-  m_Height: 3.6163867
+  m_Height: 1.232814
   m_Direction: 2
-  m_Center: {x: 2.2865536e-21, y: -4.3796974e-15, z: 1.3081936}
+  m_Center: {x: 1.2617945e-22, y: 1.2211547e-16, z: 0.11640686}
 --- !u!1001 &1504575111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32838,7 +32860,18 @@ MonoBehaviour:
   activated: 0
   onSwitchActivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1104319731}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!136 &1951569207
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32850,9 +32883,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.32
-  m_Height: 3.6043093
+  m_Height: 1.2856244
   m_Direction: 2
-  m_Center: {x: 2.2660946e-21, y: -4.293886e-15, z: 1.3021551}
+  m_Center: {x: 2.1564486e-22, y: -2.5312966e-16, z: 0.14281239}
 --- !u!198 &1951569208
 ParticleSystem:
   m_ObjectHideFlags: 0

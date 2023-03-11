@@ -20,44 +20,32 @@ public class Switch : MonoBehaviour
 
         levelData = FindObjectOfType<LevelData>();
     }
-   
-    private void OnTriggerEnter(Collider other) 
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == activationObject)    
+        if (other.gameObject == activationObject)
         {
             // The activationObjects (the balls) have two colliders, we want the one that is a trigger
-            if(!other.isTrigger)
+            if (!other.isTrigger)
             {
-                activated = true;
                 ringEffect.Play();
                 levelData.checkSwitches();
-                onSwitchActivated?.Invoke();
-
+                if (!activated)
+                {
+                    activated = true;
+                    onSwitchActivated?.Invoke();
+                }
             }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject == activationObject)
+        if (other.gameObject == activationObject)
         {
             // Trigger hover movement when the correct ball is on the switch
             other.attachedRigidbody.AddForce(Vector3.up * 6, ForceMode.Acceleration);
             other.attachedRigidbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX;
         }
-    }
-
-    private void OnTriggerExit(Collider other) 
-    {
-        if(other.gameObject == activationObject)    
-        {
-            // The activationObjects (the balls) have two colliders, we want the one that is a trigger
-            if(!other.isTrigger)
-            {
-                activated = true;
-                ringEffect.Stop();
-                levelData.checkSwitches();
-            }
-        }    
     }
 }
