@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSounds : MonoBehaviour
+public class GameOverSound : MonoBehaviour
 {
-
-    AudioSource sounds;
-  
+    AudioSource GameOver;
     
     // Start is called before the first frame update
     void Start()
     {
-        sounds = GetComponent<AudioSource>();
-       
+    
+    GameOver = GetComponent<AudioSource>();
+    
     }
 
     public void PlayerDeathSound()
     {
-        sounds.Play();
-    
+        GameOver.Play();
     }
 }
