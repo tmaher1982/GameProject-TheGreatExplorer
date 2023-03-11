@@ -35,7 +35,7 @@ public class LevelData : MonoBehaviour
                 count++;
         }
 
-        if(count == switches.Length)
+        if(count >= switches.Length)
         {
             GameManager.instance.UpdateGameState(GameState.LevelCompleted);
         }
