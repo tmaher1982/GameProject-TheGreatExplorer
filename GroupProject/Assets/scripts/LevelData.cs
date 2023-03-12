@@ -37,7 +37,11 @@ public class LevelData : MonoBehaviour
 
         if(count >= switches.Length)
         {
-            GameManager.instance.UpdateGameState(GameState.LevelCompleted);
+            if (GameManager.instance.state != GameState.LevelCompleted)
+            {
+                Debug.Log("Level Complete");
+                GameManager.instance.UpdateGameState(GameState.LevelCompleted);
+            }
         }
 
     }
