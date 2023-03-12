@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3028,7 +3028,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1641085745}
+      objectReference: {fileID: 6635570563287323026}
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -3037,7 +3037,7 @@ PrefabInstance:
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: refreshgamestate
+      value: QuitToTitle
       objectReference: {fileID: 0}
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -3222,7 +3222,7 @@ PrefabInstance:
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -3238,7 +3238,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1641085745}
+      objectReference: {fileID: 6635570563287323026}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -3257,7 +3257,7 @@ PrefabInstance:
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetGameStateToTransitionOut
+      value: NextLevel
       objectReference: {fileID: 0}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -8610,12 +8610,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 146703737}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &897675520 stripped
+--- !u!4 &897675520
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 514100712286690241, guid: d23089e71bd5f7848aead3b1f6ee2356,
     type: 3}
   m_PrefabInstance: {fileID: 451336755}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653395308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1379568082}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &907889116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18222,6 +18231,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1866252468}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1379568081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 451336755}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379568082}
+  m_Layer: 0
+  m_Name: BackgroundGeometry (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1379568082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 451336755}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379568081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 897675520}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1398378348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9124927132d845846b86483d93e3e434,
@@ -25124,6 +25164,7 @@ MonoBehaviour:
   levelTimer: 250
   playerHasObject: 0
   playerIsAlive: 1
+  gameOverSoundPlayed: 0
 --- !u!4 &1641085746
 Transform:
   m_ObjectHideFlags: 0
@@ -25239,6 +25280,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab7450616698417468a3ac1f35249ea7, type: 3}
+--- !u!1 &1653395308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 451336755}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 897675520}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1653766597
 PrefabInstance:
   m_ObjectHideFlags: 0

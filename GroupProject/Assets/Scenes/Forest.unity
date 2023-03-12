@@ -13456,7 +13456,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1641085745}
+      objectReference: {fileID: 6635570563287323026}
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -13465,7 +13465,7 @@ PrefabInstance:
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: refreshgamestate
+      value: QuitToTitle
       objectReference: {fileID: 0}
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -13620,7 +13620,7 @@ PrefabInstance:
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -13636,7 +13636,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1641085745}
+      objectReference: {fileID: 6635570563287323026}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -13655,7 +13655,7 @@ PrefabInstance:
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetGameStateToTransitionOut
+      value: NextLevel
       objectReference: {fileID: 0}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -63553,6 +63553,7 @@ MonoBehaviour:
   levelTimer: 350
   playerHasObject: 0
   playerIsAlive: 1
+  gameOverSoundPlayed: 0
 --- !u!4 &1641085746
 Transform:
   m_ObjectHideFlags: 0

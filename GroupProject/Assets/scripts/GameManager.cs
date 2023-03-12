@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public float levelTimer;
     public bool playerHasObject = false;
     public bool playerIsAlive = true;
+    public bool gameOverSoundPlayed = false;
     void Awake() 
     {
         if(instance == null)
@@ -126,7 +127,11 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOver:
-                OnGameOver?.Invoke();
+                if (!this.gameOverSoundPlayed)
+                {
+                    OnGameOver?.Invoke();
+                    this.gameOverSoundPlayed = true;
+                }
                 break;
 
             case GameState.Paused:

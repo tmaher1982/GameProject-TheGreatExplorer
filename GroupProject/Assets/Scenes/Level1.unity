@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -476,7 +476,7 @@ Transform:
   m_Children:
   - {fileID: 1488529906}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &27691568
 Rigidbody:
@@ -11069,7 +11069,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1641085745}
+      objectReference: {fileID: 6635570563287323026}
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -11078,7 +11078,7 @@ PrefabInstance:
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: refreshgamestate
+      value: QuitToTitle
       objectReference: {fileID: 0}
     - target: {fileID: 4974687951705606189, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -11263,7 +11263,7 @@ PrefabInstance:
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -11279,7 +11279,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1641085745}
+      objectReference: {fileID: 6635570563287323026}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -11298,7 +11298,7 @@ PrefabInstance:
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetGameStateToTransitionOut
+      value: NextLevel
       objectReference: {fileID: 0}
     - target: {fileID: 6377332187574597105, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -20539,7 +20539,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &922458838
 PrefabInstance:
@@ -22436,7 +22436,7 @@ Transform:
   - {fileID: 1264201237}
   - {fileID: 1929121529}
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1026567506
 PrefabInstance:
@@ -23824,7 +23824,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1104319729
 AudioSource:
@@ -33431,7 +33431,7 @@ Transform:
   - {fileID: 1336370913}
   - {fileID: 1968286898}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1341900189
 MonoBehaviour:
@@ -47304,6 +47304,7 @@ MonoBehaviour:
   levelTimer: 250
   playerHasObject: 0
   playerIsAlive: 1
+  gameOverSoundPlayed: 0
 --- !u!4 &1641085746
 Transform:
   m_ObjectHideFlags: 0
@@ -47316,7 +47317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1641085747
 MonoBehaviour:
@@ -48435,7 +48436,7 @@ Transform:
   - {fileID: 403603254}
   - {fileID: 282457497}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1705897712
 Rigidbody:
@@ -49521,7 +49522,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -51365,7 +51366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1886112985
 PrefabInstance:
@@ -53485,7 +53486,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!4 &1935685300 stripped
 Transform:
@@ -59730,7 +59731,7 @@ Transform:
   m_Children:
   - {fileID: 1456458761}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2024001605
 Rigidbody:
@@ -59835,7 +59836,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2035546528
 BoxCollider:
@@ -61671,7 +61672,7 @@ Transform:
   - {fileID: 1833203824}
   - {fileID: 1768192009}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &631054272723511615
 Transform:
