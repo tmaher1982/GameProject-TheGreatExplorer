@@ -26,6 +26,6 @@ Material:
     m_Floats:
     - _Reverse: 1
     - _Sharpness: 0.01
-    - _WipeAmount: 0.481
+    - _WipeAmount: 2
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
