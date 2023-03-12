@@ -10921,6 +10921,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2074548879526923248, guid: 8ea7b330cfacb584ebf86e101699e78d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3111130156032487344, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_text
@@ -11015,6 +11020,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IgnoreReversedGraphics
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598973692778612614, guid: 8ea7b330cfacb584ebf86e101699e78d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5598973692778612615, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
@@ -11226,6 +11236,11 @@ PrefabInstance:
       propertyPath: transition
       value: 
       objectReference: {fileID: 7089933154846161486}
+    - target: {fileID: 7089933155046875724, guid: 8ea7b330cfacb584ebf86e101699e78d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7123746882995390755, guid: 8ea7b330cfacb584ebf86e101699e78d,
         type: 3}
       propertyPath: m_IsActive
@@ -25475,8 +25490,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1188877685}
+    m_SelectOnDown: {fileID: 1188877685}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -46601,6 +46616,7 @@ MonoBehaviour:
   levelTimer: 250
   playerHasObject: 0
   playerIsAlive: 1
+  gameOverSoundPlayed: 0
 --- !u!4 &1641085746
 Transform:
   m_ObjectHideFlags: 0
@@ -59845,7 +59861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1188877683}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &2141795949 stripped
